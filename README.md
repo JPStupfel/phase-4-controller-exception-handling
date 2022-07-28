@@ -41,7 +41,7 @@ def show
   if bird
     render json: bird
   else
-    render json: { error: "Bird not found" }, status: :not_found
+    no_bird
   end
 end
 
@@ -52,7 +52,7 @@ def update
     bird.update(bird_params)
     render json: bird
   else
-    render json: { error: "Bird not found" }, status: :not_found
+    no_bird
   end
 end
 ```
@@ -74,7 +74,7 @@ Let's start by making a private method for generating the `:not_found` response:
 private
 
 def render_not_found_response
-  render json: { error: "Bird not found" }, status: :not_found
+  no_bird
 end
 ```
 
@@ -279,7 +279,7 @@ class BirdsController < ApplicationController
   end
 
   def render_not_found_response
-    render json: { error: "Bird not found" }, status: :not_found
+    no_bird
   end
 
 end
